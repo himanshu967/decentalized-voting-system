@@ -1,0 +1,153 @@
+<html>
+<title>login|ZoomBike</title>
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" integrity="sha384-DmABxgPhJN5jlTwituIyzIUk6oqyzf3+XuP7q3VfcWA2unxgim7OSSZKKf0KSsnh" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</head>
+			
+<body>
+<style>
+body, html {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+/* Add styles to the form container */
+.container {
+    position: absolute;
+    left: 300;
+    margin: 20px;
+    max-width: 300px;
+    padding: 16px;
+    background-color: white;
+}
+.container1 {
+    position: absolute;
+    right: 300;
+    margin: 20px;
+    max-width: 350px;
+    padding: 16px;
+    background-color: white;
+}
+#startElection{
+    position: absolute;
+    top: 500;
+    left: 250;
+    margin: 20px;
+    max-width: 200px;
+    padding: 16px;
+
+
+}
+#endElection{
+    position: absolute;
+    top: 500;
+    left: 500;
+    margin: 20px;
+    max-width: 200px;
+    padding: 16px;
+}
+
+#showElection{
+    position: absolute;
+    top: 500;
+    left: 750;
+    margin: 20px;
+    max-width: 200px;
+    padding: 16px;
+}
+
+#totalVotes{
+    position: absolute;
+    top: 500;
+    left: 1000;
+    margin: 20px;
+    max-width: 200px;
+    padding: 16px;
+}
+
+/* Full-width input fields */
+input[type=text] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+</style>
+</head>
+<body>
+
+   <h1 style="margin:0px;
+	padding:0x;
+	overflow:hidden;
+	background-color:Tomato;
+           text-align:center;
+           height:90px;
+           font-size:80px;">
+  President Election , 2021  </h1>
+
+<h2 style="margin:0px;
+	padding:0px;
+	background-color:powderblue;
+	text-align:center;
+	height:20px;
+	font-size:20px;">
+	<marquee>Start Election At 8:00 Am On 01/3/2021</marquee>
+</h2>
+
+<div class="addCandidate">
+  <form  class="container">
+    <h1>Add Candidate</h1>
+
+    <label for="text"><b>Full Name</b></label>
+    <input type="text" placeholder="Enter Full Name" name="fname" required>
+
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</div>
+
+<div class="userAuth">
+    <div  class="container1">
+      <h1>Authenticate User</h1>
+  
+      <label for="text"><b>Wallet Address</b></label>
+      <input id='walletaddress' type="text" placeholder="Enter Wallet Address" name="wallet" required>
+  
+      <button class="btn" id="walletbtn">Submit</button>
+    </div>
+  </div>
+
+  <button type="submit" id="startElection" class="btn">Start Election</button>
+  <button type="submit" id="endElection" class="btn">End Election</button>
+  <button type="submit" id="showElection" class="btn">Show Result</button>
+  <button type="submit" id="totalVotes" class="btn">Total Votes</button>
+
+
+<script src='mainscript.js'></script>
+</body>
+</html>
