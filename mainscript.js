@@ -1,9 +1,10 @@
 var contract; var account0;
+var candidatename=[];
 
 $(document).ready(function () {
     console.log('ready');
     web3 = new Web3(window.ethereum);
-    var address = '0x75657c08fd90746F6e50A3C263B31f1F33Ed768F';
+    var address = '0x205EaA2bC5A119EDa96a7Ca71836E303fBE26a25';
     var abi = [
         {
             "constant": false,
@@ -154,6 +155,30 @@ $(document).ready(function () {
         {
             "constant": true,
             "inputs": [],
+            "name": "showCandidates",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "voteCount",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "",
+                    "type": "tuple[]"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
             "name": "totalvotes",
             "outputs": [
                 {
@@ -193,7 +218,6 @@ $(document).ready(function () {
             "type": "function"
         }
     ]
-
     contract = new web3.eth.Contract(abi, address);
     setaccount();
     async function setaccount() {
@@ -203,12 +227,19 @@ $(document).ready(function () {
         });
     }
 })
+$(document).on('click', '#vote-btn', function(){ 
+    // Your Code
+    console.log('click button function')
+    var value=$('#0').val();
+    contract.methods.vote(value).send({ from: account0 });
+});
+/*$('#0').click(async function () {
+    console.log('click button function')
+    var value=$('#0').val();
+    contract.methods.vote(value).send({ from: account0 });
+})*/
 
-$('#0').click(async function () {
-    contract.methods.vote(0).send({ from: account0 });
-})
-
-$('#1').click(async function () {
+/*$('#1').click(async function () {
     contract.methods.vote(1).send({ from: account0 });
 })
 $('#2').click(async function () {
@@ -216,13 +247,13 @@ $('#2').click(async function () {
 })
 $('#3').click(async function () {
     contract.methods.vote(3).send({ from: account0 });
-})
+})*/
 $('#button').click(async function () {
     console.log(contract);
     var add = $('#address').val();
     contract.methods.checkVoterAuthorization(add).call().then(function (res) {
         if (res == true)
-            location.href = 'vote.html';
+            location.href = 'dynamic2vote.html';
         else
             alert("Unauthorised access");
     });
@@ -230,11 +261,28 @@ $('#button').click(async function () {
 })
 
 $('#walletbtn').click(async function () {
-    console.log('inside a#walletbtn')
+   // console.log('inside a#walletbtn')
     var add = $('#walletaddress').val();
     contract.methods.authorize(add).send({ from: account0 });
 })
 
+$('#startElection').click(async function () {
+    contract.methods.start().send({ from: account0 });
+})
+
+$('#endElection').click(async function () {
+    contract.methods.end().send({ from: account0 });
+})
+$('#totalVotes').click(async function () {
+    contract.methods.totalvotes().call().then(function(res){
+        alert(`Total Votes=${res}`);
+    });
+})
+
+$('#add_candidate_btn').click(async function () {
+     var name=$('#fname').val();    
+    contract.methods.addCandidate(name).send({ from: account0 });
+ })
 
 
 
